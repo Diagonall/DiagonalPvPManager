@@ -34,6 +34,14 @@ namespace Diagonal.PvPManager
             U.Events.OnPlayerDisconnected += Events_OnPlayerDisconnected;
 
             #region WriteLoad
+            if (Configuration.Instance.IgnoreAdmin)
+            {
+                Write("Ignore Admin: Enabled", ConsoleColor.Green);
+            }
+            else
+            {
+                Write("Ignore Admin: Disabled", ConsoleColor.Red);
+            }
             if (Configuration.Instance.PvPOnOffMessage)
             {
                 Write("PvP on|off Message: Enabled", ConsoleColor.Green);
@@ -71,6 +79,11 @@ namespace Diagonal.PvPManager
                 var SteamID = ((UnturnedPlayer)player).CSteamID;
                 foreach (var steamPlayer in Provider.clients)
                 {
+                    if (player.IsAdmin && Configuration.Instance.IgnoreAdmin)
+                    {
+                        return;
+                    }
+
                     if (steamPlayer.playerID.steamID == SteamID && player.HasPermission(Configuration.Instance.Permission))
                     {
                         Provider.isPvP = true;
@@ -101,6 +114,11 @@ namespace Diagonal.PvPManager
                 var SteamID = ((UnturnedPlayer)player).CSteamID;
                 foreach (var steamPlayer in Provider.clients)
                 {
+                    if (player.IsAdmin && Configuration.Instance.IgnoreAdmin)
+                    {
+                        return;
+                    }
+
                     if (steamPlayer.playerID.steamID == SteamID && player.HasPermission(Configuration.Instance.Permission))
                     {
                         Provider.isPvP = false;
