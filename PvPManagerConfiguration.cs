@@ -14,7 +14,7 @@ namespace Diagonal.PvPManager
             IgnoreAdmin = true;
             PvPOnOffMessage = true;
             PvPOnOffPermission = true;
-            Permission = "pvp.limiter";
+            Permission = "pvp.manager";
         }
     }
 }

@@ -30,8 +30,8 @@ namespace Diagonal.PvPManager
         protected override void Load()
         {
             Instance = this;
-            U.Events.OnPlayerConnected += Events_OnPlayerConnected;
             U.Events.OnPlayerDisconnected += Events_OnPlayerDisconnected;
+            U.Events.OnPlayerConnected += Events_OnPlayerConnected;
 
             #region WriteLoad
             if (Configuration.Instance.IgnoreAdmin)
@@ -66,8 +66,8 @@ namespace Diagonal.PvPManager
         protected override void Unload()
         {
             Instance = null;
-            U.Events.OnPlayerConnected -= Events_OnPlayerConnected;
             U.Events.OnPlayerDisconnected -= Events_OnPlayerDisconnected;
+            U.Events.OnPlayerConnected -= Events_OnPlayerConnected;
         }
         #endregion
 
